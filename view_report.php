@@ -19,8 +19,6 @@ if (!$report) {
     die('ไม่พบรายงานนี้');
 }
 
-// Security: normal users may view only their own reports.
-// Admins may view every report.
 if (!is_admin($user) && (int)$report['user_id'] !== (int)$user['id']) {
     http_response_code(403);
     die('คุณไม่มีสิทธิ์ดูรายงานของผู้ใช้อื่น');
@@ -50,6 +48,7 @@ $displayDate = date('d/m/y', strtotime($report['report_date']));
 <title>อัปเดตประจำวัน — <?= htmlspecialchars($displayDate) ?></title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=20260905">
+<link rel="stylesheet" href="assets/css/report.css?v=20260905">
 </head>
 <body class="report-page">
 <div class="report-page-wrap">
@@ -62,7 +61,8 @@ $displayDate = date('d/m/y', strtotime($report['report_date']));
     <div class="discord-head">
       <div class="discord-avatar">📋</div>
       <div>
-        <div class="discord-name"><?= htmlspecialchars($report['display_name']) ?>
+        <div class="discord-name">
+          <?= htmlspecialchars($report['display_name']) ?>
           <span class="discord-time">รายงานวันที่ <?= htmlspecialchars($displayDate) ?></span>
         </div>
         <div class="discord-title">📅 อัปเดตประจำวัน — <?= htmlspecialchars($displayDate) ?></div>
