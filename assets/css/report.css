@@ -1,0 +1,134 @@
+/* =========================================================
+   Report pages - list + detail
+   ========================================================= */
+.report-page-wrap,
+body.form-page .wrap{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+}
+
+/* Report list */
+.filter-bar{
+  display:flex;
+  align-items:flex-end;
+  gap:16px;
+  margin-bottom:18px;
+}
+.filter-bar .field{margin-bottom:0; flex:1;}
+.filter-bar select,
+.filter-bar input[type="date"]{
+  width:100%;
+  height:42px;
+  padding:9px 12px;
+  border:1.5px solid var(--rule);
+  border-radius:var(--radius-sm);
+  background:var(--paper);
+  color:var(--ink);
+  font-family:inherit;
+  font-size:14px;
+}
+.filter-bar select:focus,
+.filter-bar input[type="date"]:focus{
+  outline:2px solid rgba(75,95,224,.18);
+  border-color:var(--indigo);
+  background:var(--paper-card);
+}
+.report-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.report-list-row{
+  display:grid;
+  grid-template-columns:110px minmax(180px,1fr) 180px;
+  align-items:center;
+  gap:16px;
+  padding:16px 18px;
+  background:var(--paper-card);
+  border:1px solid var(--rule);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+  color:var(--ink);
+  text-decoration:none;
+  transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease;
+}
+.report-list-row:hover{
+  transform:translateY(-1px);
+  border-color:rgba(75,95,224,.45);
+  box-shadow:0 8px 24px rgba(34,38,47,.09);
+}
+.report-list-date{
+  font-family:'Kanit',sans-serif;
+  font-weight:600;
+  color:var(--indigo);
+}
+.report-list-name{font-weight:600;}
+.report-list-dept{font-size:13px;color:var(--ink-soft);text-align:right;}
+
+/* Report detail */
+body.report-page{
+  display:block;
+  width:100%;
+  min-height:100vh;
+  padding:28px 16px 48px;
+}
+.report-page .report-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:18px;
+  padding:0 4px;
+  font-size:13px;
+}
+.report-page .report-toolbar a{
+  color:var(--indigo);
+  text-decoration:none;
+  font-weight:600;
+}
+.report-page .report-toolbar a:hover{text-decoration:underline;}
+.discord-card{
+  background:var(--paper-card);
+  border:1px solid var(--rule);
+  border-radius:var(--radius-lg);
+  padding:26px;
+  box-shadow:var(--shadow-card);
+}
+.discord-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--rule);
+}
+.discord-avatar{
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  background:var(--indigo-tint);
+  font-size:22px;
+}
+.discord-name{font-size:16px;font-weight:700;}
+.discord-time{font-size:12px;color:var(--ink-soft);font-weight:400;margin-left:8px;}
+.discord-title{margin-top:4px;font-size:13.5px;color:var(--ink-soft);}
+.discord-section{padding:20px 0;border-bottom:1px solid var(--rule);}
+.discord-section:last-child{border-bottom:0;padding-bottom:2px;}
+.discord-section-title{
+  font-family:'Kanit',sans-serif;
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+.discord-list{margin:0;padding-left:22px;}
+.discord-list li{padding:4px 0;color:var(--ink);line-height:1.55;font-size:14px;}
+.discord-tag{font-weight:700;margin-right:5px;}
+.discord-empty{color:var(--ink-soft);font-size:14px;}
+
+@media(max-width:720px){
+  .filter-bar{flex-direction:column;align-items:stretch;}
+  .report-list-row{grid-template-columns:1fr;gap:5px;}
+  .report-list-dept{text-align:left;}
+  .report-page .report-toolbar{align-items:flex-start;flex-direction:column;gap:7px;}
+  .discord-card{padding:18px;}
+}
