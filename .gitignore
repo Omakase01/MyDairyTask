@@ -1,0 +1,23 @@
+# Local / XAMPP
+xampp/
+*.log
+logs/
+
+# Local configuration / secrets
+config.php
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# PHP / temp
+vendor/
+composer.lock
+cache/
+tmp/
