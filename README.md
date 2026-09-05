@@ -1,3 +1,9 @@
+<<<<<<< ours
+# Daily Report App
+=======
+# MyDairyTask
+>>>>>>> theirs
+
 ระบบรายงานการทำงานประจำวัน (PHP + PDO)
 
 ## โครงสร้างหลัก
@@ -21,7 +27,7 @@
 
 - `role = user` เห็นเฉพาะรายงานของตัวเอง
 - `role = admin` เห็นรายงานของทุกคน
-<<<<<<< HEAD
+<<<<<<< ours
 
 ## เตรียมขึ้น GitHub
 
@@ -35,4 +41,4 @@ git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 git push -u origin main
 ```
 =======
->>>>>>> 33b83bb1d7f12aa7039b53160f2482277cba8965
+>>>>>>> theirs
