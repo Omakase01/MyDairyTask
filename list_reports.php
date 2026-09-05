@@ -15,11 +15,9 @@ $sql = 'SELECT dr.id, dr.report_date, u.display_name, u.department
 $params = [];
 
 if (!$admin) {
-    // Normal users can see only their own reports.
     $sql .= ' AND dr.user_id = ?';
     $params[] = (int)$user['id'];
 } elseif ($filterUser !== '') {
-    // Admin can filter by employee.
     $sql .= ' AND dr.user_id = ?';
     $params[] = (int)$filterUser;
 }
@@ -35,7 +33,6 @@ $stmt = $db->prepare($sql);
 $stmt->execute($params);
 $reports = $stmt->fetchAll();
 
-// Only admin needs the employee filter.
 $users = [];
 if ($admin) {
     $users = $db->query(
@@ -54,6 +51,7 @@ if ($admin) {
 <title><?= $admin ? 'รายงานทั้งหมด' : 'รายงานของฉัน' ?> — บันทึกประจำวัน</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=20260905">
+<link rel="stylesheet" href="assets/css/report.css?v=20260905">
 </head>
 <body class="form-page">
 <div class="wrap">
@@ -84,25 +82,17 @@ if ($admin) {
           <?php endforeach; ?>
         </select>
       </div>
-
       <div class="field">
         <label for="date">วันที่</label>
-        <input type="date" id="date" name="date"
-               value="<?= htmlspecialchars($filterDate) ?>"
-               onchange="this.form.submit()">
+        <input type="date" id="date" name="date" value="<?= htmlspecialchars($filterDate) ?>" onchange="this.form.submit()">
       </div>
     </form>
   <?php else: ?>
-    <div class="card report-user-notice">
-      แสดงเฉพาะรายงานที่คุณเป็นผู้บันทึก
-    </div>
-
+    <div class="card report-user-notice">แสดงเฉพาะรายงานที่คุณเป็นผู้บันทึก</div>
     <form class="card filter-bar" method="get">
       <div class="field">
         <label for="date">วันที่</label>
-        <input type="date" id="date" name="date"
-               value="<?= htmlspecialchars($filterDate) ?>"
-               onchange="this.form.submit()">
+        <input type="date" id="date" name="date" value="<?= htmlspecialchars($filterDate) ?>" onchange="this.form.submit()">
       </div>
     </form>
   <?php endif; ?>
@@ -114,15 +104,9 @@ if ($admin) {
 
     <?php foreach ($reports as $r): ?>
       <a class="report-list-row" href="view_report.php?id=<?= (int)$r['id'] ?>">
-        <span class="report-list-date">
-          <?= date('d/m/y', strtotime($r['report_date'])) ?>
-        </span>
-        <span class="report-list-name">
-          <?= htmlspecialchars($r['display_name']) ?>
-        </span>
-        <span class="report-list-dept">
-          <?= htmlspecialchars($r['department'] ?? '') ?>
-        </span>
+        <span class="report-list-date"><?= date('d/m/y', strtotime($r['report_date'])) ?></span>
+        <span class="report-list-name"><?= htmlspecialchars($r['display_name']) ?></span>
+        <span class="report-list-dept"><?= htmlspecialchars($r['department'] ?? '') ?></span>
       </a>
     <?php endforeach; ?>
   </div>
